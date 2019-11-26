@@ -1,4 +1,4 @@
-TARGETDIR := /tmp/workdir/target
+TARGETDIR := /tmp/workspace/target
 SOURCEDIR := /home/circleci/project/codelist
 src_ttl := $(wildcard $(SOURCEDIR)/*.ttl)
 src_rdf := $(wildcard $(SOURCEDIR)/*.rdf)

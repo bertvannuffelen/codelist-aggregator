@@ -10,10 +10,12 @@ jobs:
           name: aggregate-codelists
           command: |
             /scripts/aggregatecodelist.sh 
+      - run:
+          name: List the files which have been created
+          command: ls -al /tmp/workspace/*
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - source/
             - target/
   create-artifact:
     docker:
@@ -33,7 +35,7 @@ jobs:
             git clone git@github.com:bertvannuffelen/codelist-generated.git
       - run:
           name: Switch to the target directory
-          workdir: /tmp/OSLO-Generated
+          workdir: /tmp/codelist-generated
           command: |
             git fetch origin
             git checkout -b "${CIRCLE_BRANCH}" --track "origin/${CIRCLE_BRANCH}"

@@ -2,7 +2,7 @@
 
 set -x
 
-WORKDIR=/tmp/workdir/
+WORKDIR=/tmp/workspace/
 SOURCEDIR=$WORKDIR/source
 TARGETDIR=$WORKDIR/target
 

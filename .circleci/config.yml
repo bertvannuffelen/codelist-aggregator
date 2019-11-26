@@ -43,7 +43,7 @@ jobs:
           name: Copy assets
           workdir: /tmp/workspace
           command: |
-            cp -R target/* /tmp/codelist-generated/
+            cp -R target/all.nt.gz /tmp/codelist-generated/
       - run:
           name: Push results to github
           workdir: /tmp/OSLO-Generated

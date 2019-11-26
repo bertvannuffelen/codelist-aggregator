@@ -8,12 +8,10 @@ TARGETDIR=$WORKDIR/target
 
 mkdir -p $TARGETDIR
 
-cp /scripts/Makefile $SOURCEDIR
 
-pushd $SOURCEDIR
+pushd /scripts
    make all.nt
 popd
 
-cp $SOURCEDIR/all.nt $TARGETDIR
 gzip $TARGETDIR/all.nt
 

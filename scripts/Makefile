@@ -1,15 +1,26 @@
-$(objects): %.nt: %.ttl
+TARGETDIR := /tmp/workspace/target
+SOURCEDIR := /home/circleci/project/codelist
+src_ttl := $(wildcard $(SOURCEDIR)/*.ttl)
+objectsttl := $(patsubst $(SOURCEDIR)/%.ttl, $(TARGETDIR)/%.nt, $(src_ttl))
+objectsrdf := $(patsubst $(SOURCEDIR)/%.ttl, $(TARGETDIR)/%.nt, $(src_ttl))
+objectssjon := $(patsubst $(SOURCEDIR)/%.ttl, $(TARGETDIR)/%.nt, $(src_ttl))
+objectsnt:= $(patsubst $(SOURCEDIR)/%.ttl, $(TARGETDIR)/%.nt, $(src_ttl))
+
+
+$(objectsttl): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.ttl
 	rapper -i guess -o ntriples $< > $@
 
-$(objects): %.nt: %.rdf
+$(objectsrdf): %.nt: %.rdf
 	rapper -i guess -o ntriples $< > $@
 
-$(objects): %.nt: %.nt
+$(objectsnt): %.nt: %.nt
 	rapper -i guess -o ntriples $< > $@
 
-$(objects): %.nt: %.json
+$(objectsjson): %.nt: %.json
 	rapper -i guess -o ntriples $< > $@
 
 
-all.nt: $(objects)
-	cat $< > all.nt
+all.nt: $(objectsttl)
+	mkdir -p $(TARGETDIR)
+	cat $^ > $(TARGETDIR)/all.nt
+

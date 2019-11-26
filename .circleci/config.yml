@@ -5,10 +5,11 @@ jobs:
       - image: bertvannuffelen/codelist-aggregator
     steps:
       - checkout
+      - run: mkdir -p workspace
       - run:
           name: aggregate-codelists
           command: |
-            aggregatecodelist.sh 
+            /scripts/aggregatecodelist.sh 
       - persist_to_workspace:
           root: /tmp/workspace
           paths:

@@ -4,4 +4,4 @@ RUN sudo apt-get update && sudo apt-get install raptor2-utils
 
 ADD ./scripts /scripts
 
-RUN chmod +x /scripts/*
+RUN sudo chmod +x /scripts/*

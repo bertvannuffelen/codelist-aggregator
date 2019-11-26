@@ -46,7 +46,7 @@ jobs:
             cp -R target/all.nt.gz /tmp/codelist-generated/
       - run:
           name: Push results to github
-          workdir: /tmp/OSLO-Generated
+          workdir: /tmp/codelist-generated
           command: |
             git config user.email "codelist@aggregator.org"
             git config user.name "Circle CI Builder"

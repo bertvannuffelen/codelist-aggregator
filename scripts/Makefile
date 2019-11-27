@@ -32,3 +32,6 @@ all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 	mkdir -p $(TARGETDIR)
 	cat $^ > $(TARGETDIR)/all.nt
 
+all.ttl: all.nt
+	rapper -i ntriples -o turtle $(TARGETDIR)/all.nt > $(TARGETDIR)/all.ttl
+

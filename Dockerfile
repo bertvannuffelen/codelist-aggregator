@@ -10,6 +10,7 @@ RUN mkdir ~/.npm-global && \
     npm config set prefix '~/.npm-global'  && \
     export PATH=~/.npm-global/bin:$PATH  && \ 
     echo $PATH  && \
-    npm install -g https://github.com/bertvannuffelen/jsonld-cli
+    npm install -g https://github.com/bertvannuffelen/jsonld-cli && \
+    npm install -g https://github.com/semanticarts/shacl-validator
 
 # note: the PATH update must be done before using jsonld tool usage

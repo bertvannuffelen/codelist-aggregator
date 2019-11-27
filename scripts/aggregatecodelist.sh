@@ -14,8 +14,11 @@ mkdir -p $TARGETDIR
 
 
 pushd /scripts
-   make all.nt
+   make all.ttl
 popd
+
+
+validate-shacl -s @/scripts/concept-shapes.ttl -d @/$TARGETDIR/all.ttl
 
 gzip $TARGETDIR/all.nt
 

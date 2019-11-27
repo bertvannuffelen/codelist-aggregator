@@ -11,6 +11,7 @@ _:SKOSConceptShape
         sh:path skos:prefLabel ;
         sh:name "PrefLabel" ;
         sh:minCount 1 ;
+	sh:minLength 1;
     ] ;
     sh:property [
         sh:path skos:inScheme ;

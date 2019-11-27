@@ -1,5 +1,8 @@
-TARGETDIR := /tmp/workspace/target
-SOURCEDIR := /home/circleci/project/codelist
+# env variables should be set outside 
+#TARGETDIR := /tmp/workspace/target
+#SOURCEDIR := /home/circleci/project/codelist
+#
+#
 src_ttl := $(wildcard $(SOURCEDIR)/*.ttl)
 src_rdf := $(wildcard $(SOURCEDIR)/*.rdf)
 src_json := $(wildcard $(SOURCEDIR)/*.json)

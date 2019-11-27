@@ -33,7 +33,7 @@ $(objectsjsonld): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.jsonld
 
 all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 	mkdir -p $(TARGETDIR)
-	cat $^ > $(TARGETDIR)/all.nt
+	if [ -z "$^" ] ; then echo "ERROR: no files are found" ;  else cat $^ > $(TARGETDIR)/all.nt ; fi
 
 all.ttl: all.nt
 	rapper -i ntriples -o turtle $(TARGETDIR)/all.nt > $(TARGETDIR)/all.ttl

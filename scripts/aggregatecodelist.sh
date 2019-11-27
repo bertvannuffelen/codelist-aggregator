@@ -8,8 +8,8 @@ set -x
 export PATH=~/.npm-global/bin:$PATH 
 
 SOURCEDIR=$HOME/project/codelist
-if [$# -eq 1] ; then 
-  if [ -n $1 ] ; then
+if [ $# -eq 1 ] ; then 
+  if [ -n "$1" ] ; then
      SOURCEDIR=$HOME/project/$1
   fi
 fi

@@ -9,7 +9,7 @@ jobs:
       - run:
           name: aggregate-codelists
           command: |
-            /scripts/aggregatecodelist.sh 
+            /scripts/aggregatecodelist.sh codelist
       - run:
           name: List the files which have been created
           command: ls -al /tmp/workspace/*

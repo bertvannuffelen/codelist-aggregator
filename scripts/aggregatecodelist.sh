@@ -2,6 +2,10 @@
 
 set -x
 
+# ensure jsonld is found
+export PATH=~/.npm-global/bin:$PATH 
+
+
 WORKDIR=/tmp/workspace/
 SOURCEDIR=$WORKDIR/source
 TARGETDIR=$WORKDIR/target

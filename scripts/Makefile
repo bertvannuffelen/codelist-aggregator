@@ -3,10 +3,12 @@ SOURCEDIR := /home/circleci/project/codelist
 src_ttl := $(wildcard $(SOURCEDIR)/*.ttl)
 src_rdf := $(wildcard $(SOURCEDIR)/*.rdf)
 src_json := $(wildcard $(SOURCEDIR)/*.json)
+src_jsonld := $(wildcard $(SOURCEDIR)/*.jsonld)
 src_nt := $(wildcard $(SOURCEDIR)/*.nt)
 objectsttl := $(patsubst $(SOURCEDIR)/%.ttl, $(TARGETDIR)/%.nt, $(src_ttl))
 objectsrdf := $(patsubst $(SOURCEDIR)/%.rdf, $(TARGETDIR)/%.nt, $(src_rdf))
 objectsjson := $(patsubst $(SOURCEDIR)/%.json, $(TARGETDIR)/%.nt, $(src_json))
+objectsjsonld := $(patsubst $(SOURCEDIR)/%.jsonld, $(TARGETDIR)/%.nt, $(src_jsonld))
 objectsnt := $(patsubst $(SOURCEDIR)/%.nt, $(TARGETDIR)/%.nt, $(src_nt))
 
 
@@ -22,8 +24,11 @@ $(objectsnt): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.nt
 $(objectsjson): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.json
 	rapper -i guess -o ntriples $< > $@
 
+$(objectsjsonld): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.jsonld
+	jsonld format -q $< > $@
 
-all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson)
+
+all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 	mkdir -p $(TARGETDIR)
 	cat $^ > $(TARGETDIR)/all.nt
 

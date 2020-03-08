@@ -16,18 +16,23 @@ objectsnt := $(patsubst $(SOURCEDIR)/%.nt, $(TARGETDIR)/%.nt, $(src_nt))
 
 
 $(objectsttl): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.ttl
+	dos2unix $<
 	rapper -i guess -o ntriples $< > $@
 
 $(objectsrdf): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.rdf
+	dos2unix $<
 	rapper -i guess -o ntriples $< > $@
 
 $(objectsnt): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.nt
+	dos2unix $<
 	rapper -i guess -o ntriples $< > $@
 
 $(objectsjson): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.json
+	dos2unix $<
 	rapper -i guess -o ntriples $< > $@
 
 $(objectsjsonld): $(TARGETDIR)/%.nt: $(SOURCEDIR)/%.jsonld
+	dos2unix $<
 	jsonld format -q $< > $@
 
 

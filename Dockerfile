@@ -1,6 +1,6 @@
 FROM circleci/node:10
 
-RUN sudo apt-get update && sudo apt-get install raptor2-utils
+RUN sudo apt-get update && sudo apt-get install raptor2-utils dos2unix
 
 RUN mkdir ~/.npm-global && \
     npm config set prefix '~/.npm-global'  && \

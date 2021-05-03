@@ -43,14 +43,13 @@ all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 muuid.nt: all.nt
 	cut -f 1 -d " " $(TARGETDIR)/all.nt | sort -u > $(TARGETDIR)/muuid.nt
 	sed -i -e '/concept/!d' $(TARGETDIR)/muuid.nt 
-	sed -i -e 's|\(.*conceptscheme\)\(/.*\)>|\1\2> "conceptscheme\2"| ' $(TARGETDIR)/muuid.nt 
-	sed -i -e 's|\(.*concept\)\(/.*\)>|\1\2> "concept\2"| ' $(TARGETDIR)/muuid.nt 
+	sed -i -e 's|\(.*conceptscheme\)\(/.*\)>|\1\2> "conceptscheme\2" .| ' $(TARGETDIR)/muuid.nt 
+	sed -i -e 's|\(.*concept\)\(/.*\)>|\1\2> "concept\2" .| ' $(TARGETDIR)/muuid.nt 
 	sed -i -e 's|> "|> <http://mu.semte.ch/vocabularies/core/uuid> "|' $(TARGETDIR)/muuid.nt
 	for i in 1 2 3 4 ; do \
 	      echo $$i ; \
 	      sed -i -e 's|\(".*\)/\(.*\)|\1-\2|' $(TARGETDIR)/muuid.nt  ; \
-	done \
-	sed -i -e 's|$|.|' $(TARGETDIR)/muuid.nt  
+	done 
 
 
 

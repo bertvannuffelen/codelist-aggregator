@@ -41,7 +41,7 @@ all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 	if [ -z "$^" ] ; then echo "ERROR: no files are found" ;  else cat $^ > $(TARGETDIR)/all.nt ; fi
 
 muuid.nt: all.nt
-	cut -f 1 -d " " all.nt | sort -u > $(TARGETDIR)/muuid.nt
+	cut -f 1 -d " " $(TARGETDIR)/all.nt | sort -u > $(TARGETDIR)/muuid.nt
 	sed -i -e '/concept/!d' $(TARGETDIR)/muuid.nt 
 	sed -i -e 's|\(.*conceptscheme\)\(/.*\)>|\1\2> "conceptscheme\2"| ' $(TARGETDIR)/muuid.nt 
 	sed -i -e 's|\(.*concept\)\(/.*\)>|\1\2> "concept\2"| ' $(TARGETDIR)/muuid.nt 

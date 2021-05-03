@@ -49,7 +49,9 @@ muuid.nt: all.nt
 	for i in 1 2 3 4 ; do \
 	      echo $$i ; \
 	      sed -i -e 's|\(".*\)/\(.*\)|\1-\2|' $(TARGETDIR)/muuid.nt  ; \
-	done
+	done \
+	sed -i -e 's|$|.|' $(TARGETDIR)/muuid.nt  
+
 
 
 all.ttl: all.nt muuid.nt

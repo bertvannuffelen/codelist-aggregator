@@ -41,16 +41,15 @@ all.nt: $(objectsttl) $(objectsrdf) $(objectsnt) $(objectsjson) $(objectsjsonld)
 	if [ -z "$^" ] ; then echo "ERROR: no files are found" ;  else cat $^ > $(TARGETDIR)/all.nt ; fi
 
 muuid.nt: all.nt
-	cut -f 1 -d " " all.nt | sort -u > muuid.nt
-	sed -i -e '/concept/!d' muuid.nt 
-	sed -i -e 's|\(.*conceptscheme\)\(/.*\)>|\1\2> "conceptscheme\2"| ' muuid.nt 
-	sed -i -e 's|\(.*concept\)\(/.*\)>|\1\2> "concept\2"| ' muuid.nt 
-	sed -i -e 's|> "|> <http://mu.semte.ch/vocabularies/core/uuid> "|' muuid.nt
+	cut -f 1 -d " " all.nt | sort -u > $(TARGETDIR)/muuid.nt
+	sed -i -e '/concept/!d' $(TARGETDIR)/muuid.nt 
+	sed -i -e 's|\(.*conceptscheme\)\(/.*\)>|\1\2> "conceptscheme\2"| ' $(TARGETDIR)/muuid.nt 
+	sed -i -e 's|\(.*concept\)\(/.*\)>|\1\2> "concept\2"| ' $(TARGETDIR)/muuid.nt 
+	sed -i -e 's|> "|> <http://mu.semte.ch/vocabularies/core/uuid> "|' $(TARGETDIR)/muuid.nt
 	for i in 1 2 3 4 ; do \
 	      echo $$i ; \
-	      sed -i -e 's|\(".*\)/\(.*\)|\1-\2|' muuid.nt  ; \
+	      sed -i -e 's|\(".*\)/\(.*\)|\1-\2|' $(TARGETDIR)/muuid.nt  ; \
 	done
-	cp muuid.nt $(TARGETDIR)/muuid.nt
 
 
 all.ttl: all.nt muuid.nt
